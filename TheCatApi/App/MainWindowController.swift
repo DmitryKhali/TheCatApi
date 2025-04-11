@@ -7,10 +7,18 @@
 
 import Cocoa
 
+protocol Router: AnyObject {
+    func setBreedDetailsPresenter(presenter: BreedDetailPresenter)
+    func showBreedDetails(_ breed: CatBreed, withImage dataImage: Data?)
+    func showBreedsPhotoGalary(for breedId: String)
+}
 
 class MainWindowController: NSWindowController {
 
-    var detailViewController: BreedDetailViewController!
+    let factory = FactoryImpl()
+    
+    weak var detailViewPresenter: BreedDetailPresenter?
+    private var photoGalaryWindow: NSWindow?
     
     convenience init() {
         self.init(windowNibName: "MainWindowController")
@@ -24,25 +32,16 @@ class MainWindowController: NSWindowController {
         
         setupContent()
     }
-
+    
     private func setupContent() {
         let splitVC = NSSplitViewController()
         
-        let presenter = BreedListPresenter()
-        presenter.router = self
-        
         // Left side
-        let breedListVC = BreedListViewController(nibName: "BreedListView", bundle: nil)
-        breedListVC.presenter = presenter
-        presenter.view = breedListVC
-        presenter.loadBreeds()
-        let listItem = NSSplitViewItem(viewController: breedListVC)
+        let listItem = NSSplitViewItem(viewController: factory.createBreedList(router: self))
         listItem.minimumThickness = 200
         
         // Right side
-        let breedsDetailVC = BreedDetailViewController(nibName: "BreedDetailView", bundle: nil)
-        detailViewController = breedsDetailVC
-        let detailItem = NSSplitViewItem(viewController: breedsDetailVC)
+        let detailItem = NSSplitViewItem(viewController: factory.createBreedDetails(router: self))
         detailItem.minimumThickness = 400
         
         // Добавляем в splitVC
@@ -53,8 +52,33 @@ class MainWindowController: NSWindowController {
     }
 }
 
-extension MainWindowController: BreedListRoutingLogic {
-    func showBreedDetails(_ breed: CatBreed) {
-        detailViewController.update(breed: breed)
+extension MainWindowController: Router {
+    func setBreedDetailsPresenter(presenter: BreedDetailPresenter) {
+        self.detailViewPresenter = presenter
+    }
+    
+    func showBreedDetails(_ breed: CatBreed, withImage dataImage: Data? = nil) {
+        detailViewPresenter?.present(breed: breed, withImage: dataImage)
+    }
+    
+    func showBreedsPhotoGalary(for breedId: String) {
+        
+//        photoGalaryWindow?.close()
+//        photoGalaryWindow = nil
+        
+        let window = factory.createBreedPhotoGalaryWindow()
+//        window.delegate = self
+        
+        let viewController = factory.createBreedPhotoGalary(breedId: breedId)
+        window.contentViewController = viewController
+        
+        photoGalaryWindow = window
     }
 }
+
+//extension MainWindowController: NSWindowDelegate {
+//    func windowWillClose(_ notification: Notification) {
+//        // Когда окно закрывается системой (например, кликом на крестик)
+//        photoGalaryWindow = nil
+//    }
+//}

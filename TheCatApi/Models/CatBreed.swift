@@ -9,19 +9,11 @@ import Foundation
 
 
 struct CatBreed: Decodable {
-    let id: String?
-    let name: String?
-    let description: String?
-    let energyLevel: String?
-    let intelligence: String?
+    let id: String
+    let name: String
+    let description: String
+    let energyLevel: Int?
+    let intelligence: Int?
     let wikipediaUrl: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case description
-        case energyLevel = "energy_level"
-        case intelligence
-        case wikipediaUrl = "wikipedia_url"
-    }
+    var imageUrl: String?
 }

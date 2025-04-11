@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "65990F7E-BD37-45F6-AB56-85DE7564CF8D"
+            uuid = "58E3D523-BEE4-44D8-ADC6-86C87788FB59"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TheCatApi/AppDelegate.swift"
+            filePath = "TheCatApi/App/MainWindowController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "applicationDidFinishLaunching(_:)"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "showBreedsPhotoGalary(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

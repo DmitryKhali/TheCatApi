@@ -13,18 +13,18 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView misplaced="YES" id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="300" height="598"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="270"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="75" horizontalPageScroll="10" verticalLineScroll="75" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCt-Q8-eVM">
-                    <rect key="frame" x="0.0" y="0.0" width="300" height="598"/>
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="270"/>
                     <clipView key="contentView" id="KDL-Q8-1pY">
-                        <rect key="frame" x="1" y="1" width="298" height="596"/>
+                        <rect key="frame" x="1" y="1" width="298" height="268"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="75" rowSizeStyle="automatic" viewBased="YES" id="Sfs-aG-wes">
-                                <rect key="frame" x="0.0" y="0.0" width="298" height="596"/>
+                                <rect key="frame" x="0.0" y="0.0" width="298" height="268"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="17" height="0.0"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -47,7 +47,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CsD-sM-bFh">
-                                                        <rect key="frame" x="55" y="30" width="37" height="16"/>
+                                                        <rect key="frame" x="68" y="30" width="37" height="16"/>
                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="k5Y-aJ-6E0">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -55,17 +55,22 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HIL-a3-6ka">
-                                                        <rect key="frame" x="5" y="22" width="32" height="32"/>
-                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSUser" id="94s-8w-Gie"/>
+                                                        <rect key="frame" x="5" y="11" width="45.5" height="53"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="45" id="HDT-5L-M8a"/>
+                                                            <constraint firstAttribute="width" constant="45" id="LHc-NR-VpS"/>
+                                                        </constraints>
+                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="cat" catalog="system" id="94s-8w-Gie"/>
                                                     </imageView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="CsD-sM-bFh" firstAttribute="leading" secondItem="HIL-a3-6ka" secondAttribute="trailing" constant="20" id="Zwz-RX-xzZ"/>
-                                                    <constraint firstItem="HIL-a3-6ka" firstAttribute="leading" secondItem="xMc-cc-6yM" secondAttribute="leading" constant="5" id="eyt-Hz-2Zo"/>
-                                                    <constraint firstItem="HIL-a3-6ka" firstAttribute="centerY" secondItem="xMc-cc-6yM" secondAttribute="centerY" id="qQ3-KI-1Q5"/>
-                                                    <constraint firstItem="CsD-sM-bFh" firstAttribute="centerY" secondItem="xMc-cc-6yM" secondAttribute="centerY" id="vwd-Zp-28m"/>
+                                                    <constraint firstItem="CsD-sM-bFh" firstAttribute="leading" secondItem="HIL-a3-6ka" secondAttribute="trailing" constant="20" id="b9A-vf-Okf"/>
+                                                    <constraint firstItem="HIL-a3-6ka" firstAttribute="leading" secondItem="xMc-cc-6yM" secondAttribute="leading" constant="5" id="kXI-B1-ykl"/>
+                                                    <constraint firstItem="CsD-sM-bFh" firstAttribute="centerY" secondItem="xMc-cc-6yM" secondAttribute="centerY" id="sam-Og-lgb"/>
+                                                    <constraint firstItem="HIL-a3-6ka" firstAttribute="centerY" secondItem="xMc-cc-6yM" secondAttribute="centerY" id="usB-g6-BnX"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="imageView" destination="HIL-a3-6ka" id="gzM-9d-SRh"/>
                                                     <outlet property="textField" destination="CsD-sM-bFh" id="e33-Es-yX9"/>
                                                 </connections>
                                             </tableCellView>
@@ -90,15 +95,19 @@
                 </scrollView>
             </subviews>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="rCt-Q8-eVM" secondAttribute="trailing" id="0Mx-OQ-HmZ"/>
+                <constraint firstItem="rCt-Q8-eVM" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="5Xb-JL-lcG"/>
+                <constraint firstAttribute="bottom" secondItem="rCt-Q8-eVM" secondAttribute="bottom" id="6oF-r0-Fmr"/>
                 <constraint firstItem="rCt-Q8-eVM" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="B03-gu-ezV"/>
                 <constraint firstAttribute="trailing" secondItem="rCt-Q8-eVM" secondAttribute="trailing" id="IZe-wG-y8W"/>
                 <constraint firstAttribute="bottom" secondItem="rCt-Q8-eVM" secondAttribute="bottom" id="Txn-l7-9HM"/>
                 <constraint firstItem="rCt-Q8-eVM" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="lvg-NF-OVH"/>
+                <constraint firstItem="rCt-Q8-eVM" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="zJw-6B-rVn"/>
             </constraints>
-            <point key="canvasLocation" x="51" y="161"/>
+            <point key="canvasLocation" x="51" y="160.5"/>
         </customView>
     </objects>
     <resources>
-        <image name="NSUser" width="32" height="32"/>
+        <image name="cat" catalog="system" width="21" height="17"/>
     </resources>
 </document>
